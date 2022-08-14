@@ -30,7 +30,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(10),
                   child: ClipRRect(
                     child: Image.asset(
                       "assets/images/conv.jpg",
@@ -39,7 +39,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 0.9 * width,
+                  width: 0.85 * width,
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: const TextSpan(
@@ -53,11 +53,11 @@ class WelcomePage extends StatelessWidget {
                         ),
                         TextSpan(
                           text:
-                              "Join the latest community app that will cleat all the doubts of youtube that can't be solved on youtube or any other sites. Find someone similar to you!",
+                              "Join the latest community app that will clear all the doubts of youtube that can't be solved on youtube comments or any other sites. Find someone similar to you!",
                           style: TextStyle(
                             fontWeight: FontWeight.normal,
-                            fontSize: 15,
-                            color: Color.fromARGB(255, 62, 62, 62),
+                            fontSize: 13,
+                            color: Color.fromARGB(255, 88, 88, 88),
                           ),
                         ),
                       ],
@@ -72,7 +72,9 @@ class WelcomePage extends StatelessWidget {
                     ),
                     child: SignInButton(
                       Buttons.GoogleDark,
-                      onPressed: () {},
+                      onPressed: () {
+                        // here will be navigation
+                      },
                     ),
                   ),
                 ),
