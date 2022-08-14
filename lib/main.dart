@@ -1,4 +1,5 @@
 import 'package:diskit/home_page.dart';
+// ignore: unused_import
 import 'package:diskit/welcome_page.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.orange,
+        appBarTheme: const AppBarTheme(
+          color: Color.fromARGB(255, 32, 31, 47),
+        ),
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          tertiary: const Color.fromARGB(25, 32, 31, 47),
+          secondary: const Color.fromARGB(50, 32, 31, 47),
+          primary: const Color.fromARGB(255, 32, 31, 47),
+        ),
       ),
       home: const HomePage(),
     );
