@@ -1,3 +1,5 @@
+import 'package:diskit/routes.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
@@ -15,7 +17,7 @@ class WelcomePage extends StatelessWidget {
         child: SafeArea(
           child: Container(
             width: width,
-            margin: EdgeInsets.only(top: 0.1 * width, bottom: 0.1 * width),
+            margin: EdgeInsets.only(top: 0.1 * width, bottom: 0.2 * width),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,6 +76,8 @@ class WelcomePage extends StatelessWidget {
                       Buttons.GoogleDark,
                       onPressed: () {
                         // here will be navigation
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, homePageRoute, (route) => false);
                       },
                     ),
                   ),
