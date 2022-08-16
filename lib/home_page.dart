@@ -63,29 +63,29 @@ class _HomePageState extends State<HomePage> {
           child: ListView.builder(
             itemCount: 10,
             itemBuilder: ((context, i) {
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    istapOnBox = !istapOnBox;
-                  });
-                },
+              return Container(
+                margin: EdgeInsets.symmetric(
+                  vertical: 5,
+                  horizontal: 0.04 * width,
+                ),
                 child: Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 0.04 * width,
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        // vertical: 10,
-                        // horizontal: 10,
-                        ),
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary,
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+                  padding: const EdgeInsets.symmetric(
+                      // vertical: 10,
+                      // horizontal: 10,
+                      ),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            istapOnBox = !istapOnBox;
+                          });
+                        },
+                        child: Row(
                           // mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
@@ -135,46 +135,61 @@ class _HomePageState extends State<HomePage> {
                             )
                           ],
                         ),
-                        istapOnBox
-                            ? Container(
-                                width: width,
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 13,
-                                  horizontal: 10,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.vertical(
-                                      top: Radius.circular(0),
-                                      bottom: Radius.circular(5)),
-                                  color: Colors.white.withOpacity(0.5),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Row(
+                      ),
+                      istapOnBox
+                          ? Container(
+                              height: 60,
+                              width: width,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 13,
+                                horizontal: 10,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.vertical(
+                                    top: Radius.circular(0),
+                                    bottom: Radius.circular(5)),
+                                color: Colors.white.withOpacity(0.5),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Row(
                                       children: const [
                                         Icon(Icons.thumb_up),
                                         Text(" 0.2K"),
                                       ],
                                     ),
-                                    Row(
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Row(
                                       children: const [
                                         Icon(Icons.person),
                                         Text("2.5K"),
                                       ],
                                     ),
-                                    const Icon(
-                                      Icons.chat_bubble,
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: const Icon(Icons.share),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: const Icon(
+                                      Icons.chat_rounded,
+                                      // Icons.arrow_right_rounded,
+                                      // size: 50,
                                       color: Color.fromARGB(255, 133, 173, 84),
                                     ),
-                                    const Icon(Icons.share),
-                                  ],
-                                ),
-                              )
-                            : Container(),
-                      ],
-                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : Container(),
+                    ],
                   ),
                 ),
               );
