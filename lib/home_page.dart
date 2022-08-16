@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:diskit/Models/diskit_chat_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,72 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double width = size.width;
+    List<ChatModel> diskitChat = [
+      ChatModel(
+        id: 1,
+        title: "Quick and easy custom thumbnail",
+        image: "assets/images/profile.jpg",
+        online: 12,
+        likes: 28,
+        noOfUsers: 331,
+        unReadChat: 4,
+      ),
+      ChatModel(
+        id: 1,
+        title: "Use the Right Keywords for YouTube Search",
+        image: "assets/images/profile.jpg",
+        online: 12,
+        likes: 28,
+        noOfUsers: 331,
+        unReadChat: 4,
+      ),
+      ChatModel(
+        id: 1,
+        title: "Avoid YouTube Clickbait Titles",
+        image: "assets/images/profile.jpg",
+        online: 12,
+        likes: 8,
+        noOfUsers: 331,
+        unReadChat: 4,
+      ),
+      ChatModel(
+        id: 1,
+        title: "Stay Under the YouTube Title Character Limit",
+        image: "assets/images/profile.jpg",
+        online: 2,
+        likes: 8,
+        noOfUsers: 331,
+        unReadChat: 4,
+      ),
+      ChatModel(
+        id: 1,
+        title: "Quick and easy custom thumbnail",
+        image: "assets/images/profile.jpg",
+        online: 2,
+        likes: 8,
+        noOfUsers: 331,
+        unReadChat: 4,
+      ),
+      ChatModel(
+        id: 1,
+        title: "9 Ways to Write Exciting YouTube Titles for Your Videos",
+        image: "assets/images/profile.jpg",
+        online: 2,
+        likes: 8,
+        noOfUsers: 331,
+        unReadChat: 4,
+        // isTap: false,
+      ),
+      ChatModel(
+        id: 1,
+        title: " Use Words Your Audience Can Relate To",
+        image: null,
+        online: 2,
+        likes: 8,
+        noOfUsers: 331,
+        unReadChat: 4,
+      ),
+    ];
 
     // double height = size.height;
     return GestureDetector(
@@ -32,6 +99,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
+          scrolledUnderElevation: 10,
           titleSpacing: 20,
           title: Column(
             children: [
@@ -61,31 +129,32 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Center(
           child: ListView.builder(
-            itemCount: 10,
+            itemCount: diskitChat.length,
             itemBuilder: ((context, i) {
-              return Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: 5,
-                  horizontal: 0.04 * width,
-                ),
+              // log("$i");
+              return InkWell(
+                onTap: () {
+                  setState(() {
+                    diskitChat[i].isTap = !(diskitChat[i].isTap);
+                  });
+                },
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                      // vertical: 10,
-                      // horizontal: 10,
-                      ),
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            istapOnBox = !istapOnBox;
-                          });
-                        },
-                        child: Row(
+                  margin: EdgeInsets.symmetric(
+                    vertical: 5,
+                    horizontal: 0.04 * width,
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        // vertical: 10,
+                        // horizontal: 10,
+                        ),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.secondary,
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
                           // mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
@@ -94,8 +163,9 @@ class _HomePageState extends State<HomePage> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: Image.asset(
-                                  'assets/images/profile.jpg',
-                                  scale: 10,
+                                  diskitChat[i].image ??
+                                      "assets/images/default_profile.jpg",
+                                  scale: diskitChat[i].image == null ? 4.4 : 10,
                                 ),
                               ),
                             ),
@@ -109,12 +179,11 @@ class _HomePageState extends State<HomePage> {
                                     child: RichText(
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 2,
-                                      text: const TextSpan(
+                                      text: TextSpan(
                                         children: [
                                           TextSpan(
-                                            text:
-                                                "Quick and easy custom thumbnail\n",
-                                            style: TextStyle(
+                                            text: diskitChat[i].title,
+                                            style: const TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 20,
@@ -125,9 +194,10 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                   Row(
-                                    children: const [
-                                      Icon(Icons.online_prediction),
-                                      Text("344 in past 24hrs"),
+                                    children: [
+                                      const Icon(Icons.online_prediction),
+                                      Text(
+                                          "${diskitChat[i].online} in past 24hrs"),
                                     ],
                                   ),
                                 ],
@@ -135,61 +205,63 @@ class _HomePageState extends State<HomePage> {
                             )
                           ],
                         ),
-                      ),
-                      istapOnBox
-                          ? Container(
-                              height: 60,
-                              width: width,
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 13,
-                                horizontal: 10,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.vertical(
-                                    top: Radius.circular(0),
-                                    bottom: Radius.circular(5)),
-                                color: Colors.white.withOpacity(0.5),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Row(
-                                      children: const [
-                                        Icon(Icons.thumb_up),
-                                        Text(" 0.2K"),
-                                      ],
+                        // istapOnBox
+                        diskitChat[i].isTap
+                            ? Container(
+                                height: 60,
+                                width: width,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 13,
+                                  horizontal: 10,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.vertical(
+                                      top: Radius.circular(0),
+                                      bottom: Radius.circular(5)),
+                                  color: Colors.white.withOpacity(0.5),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {},
+                                      child: Row(
+                                        children: [
+                                          const Icon(Icons.thumb_up),
+                                          Text(" ${diskitChat[i].likes}K"),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Row(
-                                      children: const [
-                                        Icon(Icons.person),
-                                        Text("2.5K"),
-                                      ],
+                                    TextButton(
+                                      onPressed: () {},
+                                      child: Row(
+                                        children: [
+                                          const Icon(Icons.person),
+                                          Text("${diskitChat[i].noOfUsers}K"),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: const Icon(Icons.share),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: const Icon(
-                                      Icons.chat_rounded,
-                                      // Icons.arrow_right_rounded,
-                                      // size: 50,
-                                      color: Color.fromARGB(255, 133, 173, 84),
+                                    TextButton(
+                                      onPressed: () {},
+                                      child: const Icon(Icons.share),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : Container(),
-                    ],
+                                    TextButton(
+                                      onPressed: () {},
+                                      child: const Icon(
+                                        Icons.chat_rounded,
+                                        // Icons.arrow_right_rounded,
+                                        // size: 50,
+                                        color:
+                                            Color.fromARGB(255, 133, 173, 84),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : Container(),
+                      ],
+                    ),
                   ),
                 ),
               );
